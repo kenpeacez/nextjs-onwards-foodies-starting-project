@@ -6,8 +6,8 @@ import { Suspense } from "react";
 
 export default async function MealsPage() {
   async function Meals() {
-    const meals = await getMeals();
-    return <MealsGrid meals={meals}></MealsGrid>;
+    const meals = await getMeals(); //getMeals from database
+    return <MealsGrid meals={meals}></MealsGrid>; //pass object to MealsGrid from database
   }
 
   return (
