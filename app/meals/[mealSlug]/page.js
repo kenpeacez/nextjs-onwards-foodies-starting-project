@@ -3,8 +3,19 @@ import classes from "./page.module.css";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-export default function MealDetailsPage({ params }) {
+export async function generateMetadata({ params }) {
   const meal = getMealById(params.mealSlug);
+  if (!meal) {
+    notFound(); // return the nearest not-found page
+  }
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
+export default function MealDetailsPage({ params }) {
+  const meal = getMealById(params.mealSlug); //get data from database
   if (!meal) {
     notFound(); // return the nearest not-found page
   }
